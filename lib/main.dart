@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomeScreen(),
+      routes: {'/second': (context) => SecondScreen()},
     );
   }
 }
@@ -28,12 +29,15 @@ class HomeScreen extends StatelessWidget {
         child: Image(image: NetworkImage('https://img.icons8.com/keek/100/chat.png')),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      appBar: _appBar(),
+      appBar: _appBar(context),
     );
   }
 
-  AppBar _appBar(){
+  AppBar _appBar(BuildContext context){
     return AppBar(
+      backgroundColor: Colors.blue,
+      toolbarHeight: 100,
+      actionsPadding: EdgeInsets.only(bottom: 20),
       actions: [
         Expanded(
             child: Row(
@@ -48,7 +52,7 @@ class HomeScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: onPressed, child: Text('Кнопка 1')),
+                TextButton(onPressed: () => button1OnPressed(context), child: Text('Кнопка 1')),
                 TextButton(onPressed: onPressed, child: Text('Кнопка 2')),
                 TextButton(onPressed: onPressed, child: Text('Кнопка 3'))
               ],
@@ -56,6 +60,10 @@ class HomeScreen extends StatelessWidget {
         )
       ],
     );
+  }
+
+  void button1OnPressed(BuildContext context){
+    Navigator.pushNamed(context, '/second');
   }
 
   void onPressed(){
@@ -77,5 +85,36 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
 
+class SecondScreen extends StatelessWidget
+{
+  const SecondScreen({super.key});
+  @override
+  Widget build(BuildContext context)
+  {
+    return MaterialApp(
+      theme: ThemeData(primaryColor: Colors.blueAccent),
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('data'),
+
+            /*Row(
+                children: [
+                  TextButton(onPressed: () => Navigator.pop(context), child: Text('back'))
+                ],
+                //mainAxisAlignment: MainAxisAlignment.center,
+            ),*/
+            actions: [Text('data3')],
+            centerTitle: true,
+          ),
+          body: Center(
+            child: Text("data2", style: TextStyle(
+                fontSize: 30,
+                color: Colors.red
+            ),),
+          )
+      ),
+    );
+  }
 }
