@@ -57,7 +57,7 @@ class _LayoutState extends State<Layout> {
           });
         },
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white10,
         selectedItemColor: Colors.black,
         items: [
           BottomNavigationBarItem(
