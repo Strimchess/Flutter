@@ -31,7 +31,7 @@ class Layout extends StatefulWidget {
 class _LayoutState extends State<Layout> {
 
   int _currentIndex = 0;
-
+  bool isSignedIn = false;
 
   final List<Widget> _screens = [
     MainScreen(),
